@@ -4,6 +4,8 @@ services:
     node:
         build:
             context: .
+        ports:
+            - "3000:3000"
         volumes:
             - ./app:/var/www/app
             - /var/www/app/node_modules
@@ -31,7 +33,7 @@ services:
     grafana:
         image: grafana/grafana:8.4.6
         ports:
-            - "80:3000"
+            - "80:3050"
         volumes:
             - "grafana_config:/var/lib/grafana"
 
