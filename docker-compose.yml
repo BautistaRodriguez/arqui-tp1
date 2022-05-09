@@ -4,14 +4,14 @@ services:
     node:
         build:
             context: .
-        # ports:
-        #     - "3000:3000"
         volumes:
             - ./app:/var/www/app
             - /var/www/app/node_modules
 
     nginx:
         image: nginx:1.21.6
+        depends_on:
+            - node
         ports:
             - "5555:80"
         volumes:
