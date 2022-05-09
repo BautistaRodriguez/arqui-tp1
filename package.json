@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "artillery": "^2.0.0-16",
+    "artillery-plugin-statsd": "^2.2.1"
+  }
+}
