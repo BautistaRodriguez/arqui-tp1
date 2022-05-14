@@ -8,25 +8,22 @@ app.get('/', function (req, res) {
     console.log('request received');
 });
 
-app.route('/article')
-.get(function (req, res) {
-    console.log('hola');
-    res.send('Get the article');
-})
-.post(function (req, res) {
-    res.send('Add an article');
-})
-.put(function (req, res) {
-    res.send('Update the article');
+app.get('/sleep', function (req, res) {
+    setTimeout(() => {
+        res.send('Ya me desperte')
+    }, 3000);
 });
 
-app.get('/the*man', function (req, res) {
-    res.send('the*man');
+app.get('/heavyLoad', function (req, res) {
+    fibo(30);
+    res.send('Fibonacci');
 });
 
-app.get(/bat/, function (req, res) {
-    res.send('/bat/');
-});
+function fibo(n) { 
+    if (n < 2)
+        return 1;
+    else   return fibo(n - 2) + fibo(n - 1);
+}
 
 app.use(function (req, res, next) {
     res.status(404).send("Lo siento, esa ruta no existe. Que tengas un buen dia :)");

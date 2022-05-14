@@ -21,7 +21,7 @@ config:
           host: localhost
           port: 8125
           prefix: "artillery-bbox-1"
-
+        
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
   phases:
@@ -33,9 +33,8 @@ config:
       duration: 120
       arrivalRate: 30
     
-
 scenarios:
-  - name: Root (/)
+  - name: HeavyLoad (/heavyLoad)
     flow:
       - get:
-          url: '/'
+          url: '/heavyLoad/'
