@@ -5,6 +5,7 @@ var app = express();
 
 app.get('/', function (req, res) {
     res.send('<b>My</b> first express http server');
+    console.log('request received');
 });
 
 app.route('/article')
