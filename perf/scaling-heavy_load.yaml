@@ -1,0 +1,47 @@
+config:
+  environments:
+    node:
+      target: 'http://localhost:5555'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-node"
+    bbox-1:
+      target: 'http://localhost:9090'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-bbox-2"
+    bbox-2:
+      target: 'http://localhost:9091'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-bbox-1"
+        
+  pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
+
+  phases:
+    - name: Ramp
+      duration: 30
+      arrivalRate: 5
+      rampTo: 30
+    - name: Plain
+      duration: 30
+      arrivalRate: 30
+    - name: Ramp
+      duration: 30
+      arrivalRate: 30
+      rampTo: 100
+    - name: Plain
+      duration: 60
+      arrivalRate: 100
+    
+scenarios:
+  - name: HeavyLoad (/heavyLoad)
+    flow:
+      - get:
+          url: '/heavyLoad/'
