@@ -11,12 +11,14 @@ services:
     multi_node:
         build:
             context: .
+        profiles: ["multi"]
         volumes:
             - ./app:/var/www/app
             - /var/www/app/node_modules
 
     nginx:
         image: nginx:1.21.6
+        profiles: ["single"]
         depends_on:
             - node
         ports:
@@ -29,6 +31,7 @@ services:
 
     nginx_multi:
         image: nginx:1.21.6
+        profiles: ["multi"]
         depends_on:
             - node
             - multi_node
