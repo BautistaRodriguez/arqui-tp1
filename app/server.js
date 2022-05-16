@@ -14,10 +14,24 @@ app.get('/sleep', function (req, res) {
     }, 3000);
 });
 
+app.get('/async', async function(req, res) {
+    let result = await smallWait(req.body.url);
+    res.send(result);
+});
+
 app.get('/heavyLoad', function (req, res) {
     fibo(30);
     res.send('Fibonacci');
 });
+
+
+let smallWait = function (url, done) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(true)
+        }, 3000);
+    });
+} 
 
 function fibo(n) { 
     if (n < 2)
