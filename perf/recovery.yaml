@@ -46,6 +46,9 @@ config:
     - name: Plain
       duration: 60
       arrivalRate: 100
+    - name: Recovery
+      duration: 60
+      arrivalRate: 30
     
 scenarios:
   - name: HeavyLoad (/heavyLoad)
