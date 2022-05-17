@@ -1,0 +1,52 @@
+config:
+  environments:
+    node:
+      target: 'http://localhost:5555'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-node"
+    multi-node:
+      target: 'http://localhost:5556'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-multi-node"
+    bbox-1:
+      target: 'http://localhost:9090'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-bbox-2"
+    bbox-2:
+      target: 'http://localhost:9091'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-bbox-1"
+
+  pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
+
+  phases:
+    - name: Warmup
+      duration: 30
+      arrivalRate: 10
+    - name: Ramp
+      duration: 120
+      arrivalRate: 10
+      rampTo: 1000
+    - name: Ramp Down
+      duration: 60
+      arrivalRate: 1000
+      rampTo: 10
+  
+scenarios:
+    - name: ping
+      flow:
+        - get:
+            url: '/'
+  
