@@ -9,13 +9,18 @@ app.get('/', function (req, res) {
 });
 
 app.get('/sleep', function (req, res) {
+    console.log("sleep");
     setTimeout(() => {
+        console.log("wake up!");
         res.send('Ya me desperte')
     }, 3000);
+    console.log("zzzzzzz");
 });
 
 app.get('/async', async function(req, res) {
-    let result = await smallWait(req.body.url);
+    console.log("async");
+    let result = await smallWait();
+    console.log("async result: " + result);
     res.send(result);
 });
 
@@ -25,7 +30,7 @@ app.get('/heavyLoad', function (req, res) {
 });
 
 
-let smallWait = function (url, done) {
+let smallWait = function () {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(true)
