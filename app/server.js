@@ -29,6 +29,54 @@ app.get('/heavyLoad', function (req, res) {
     res.send('Fibonacci');
 });
 
+app.get('/bbox-async', function (req, res) {
+    const http = require('http');
+
+    const options = {
+        hostname: 'bbox',
+        port: 9091,
+        path: '/',
+        method: 'GET',
+    };
+
+    const bboxreq = http.request(options, x => {
+        console.log(`statusCode: ${x.statusCode}`);
+        x.on('data', d => {
+            res.send('Hello world!');
+          });
+    });
+
+    bboxreq.on('error', error => {
+        console.error(error);
+    });
+
+    bboxreq.end();
+});
+
+app.get('/bbox-sync', function (req, res) {
+    const http = require('http');
+
+    const options = {
+        hostname: 'bbox',
+        port: 9090,
+        path: '/',
+        method: 'GET',
+    };
+
+    const bboxreq = http.request(options, x => {
+        console.log(`statusCode: ${x.statusCode}`);
+        x.on('data', d => {
+            res.send('Hello world!');
+          });
+    });
+
+    bboxreq.on('error', error => {
+        console.error(error);
+    });
+
+    bboxreq.end();
+});
+
 
 let smallWait = function () {
     return new Promise((resolve, reject) => {
