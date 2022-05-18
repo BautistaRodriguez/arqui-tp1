@@ -28,13 +28,18 @@ config:
     - name: Ramp
       duration: 30
       arrivalRate: 30
-      rampTo: 100
+      rampTo: 150
     - name: Plain
       duration: 60
-      arrivalRate: 100
+      arrivalRate: 150
+    - name: Slow Down
+      duration: 30
+      arrivalRate: 150
+      rampTo: 30
     - name: Recovery
-      duration: 60
+      duration: 120
       arrivalRate: 30
+
     
 scenarios:
   - name: HeavyLoad (/heavyLoad)
