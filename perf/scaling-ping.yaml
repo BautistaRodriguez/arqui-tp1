@@ -15,19 +15,19 @@ config:
           port: 8125
           prefix: "artillery-multi-node"
     bbox-1:
-      target: 'http://localhost:9090'
-      plugins:
-        statsd:
-          host: localhost
-          port: 8125
-          prefix: "artillery-bbox-2"
-    bbox-2:
-      target: 'http://localhost:9091'
+      target: 'http://localhost:5555/bbox-sync'
       plugins:
         statsd:
           host: localhost
           port: 8125
           prefix: "artillery-bbox-1"
+    bbox-2:
+      target: 'http://localhost:5555/bbox-async'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-bbox-2"
 
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 

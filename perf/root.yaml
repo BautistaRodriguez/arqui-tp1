@@ -8,14 +8,14 @@ config:
           port: 8125
           prefix: "artillery-node"
     bbox-1:
-      target: 'http://localhost:9090'
+      target: 'http://localhost:5555/bbox-sync'
       plugins:
         statsd:
           host: localhost
           port: 8125
           prefix: "artillery-bbox-2"
     bbox-2:
-      target: 'http://localhost:9091'
+      target: 'http://localhost:5555/bbox-async'
       plugins:
         statsd:
           host: localhost
