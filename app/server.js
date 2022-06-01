@@ -25,7 +25,7 @@ app.get('/async', async function(req, res) {
 });
 
 app.get('/heavyLoad', function (req, res) {
-    fibo(30);
+    fibo(36);
     res.send('Fibonacci');
 });
 
